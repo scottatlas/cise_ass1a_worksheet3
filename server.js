@@ -5,20 +5,20 @@ const connectDB = require('./config/db');
 var cors = require('cors');
 
 
-require("dotenv").config();
+//require("dotenv").config();
 
 const app = express();
-require("./models/quote");
+// require("./models/quote");
 
-    mongoose
-     .connect(
-             {
-               useNewUrlParser: true,
-               useUnifiedTopology: true,
-             }
-     )
-     .then(() => console.log("MongoDB has been connected"))
-     .catch((err) => console.log(err));
+//     mongoose
+//      .connect(
+//              {
+//                useNewUrlParser: true,
+//                useUnifiedTopology: true,
+//              }
+//      )
+//      .then(() => console.log("MongoDB has been connected"))
+//      .catch((err) => console.log(err));
 
 //middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,8 +44,6 @@ app.get('/', (req, res) => res.send('Hello world!'));
 // use Routes
 app.use('/api/books', books);
 
-const port = process.env.PORT || 5000;
-
 // Accessing the path module
 const path = require("path");
 
@@ -55,5 +53,7 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
