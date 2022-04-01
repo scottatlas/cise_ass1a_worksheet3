@@ -4,10 +4,31 @@ const express = require('express');
 const connectDB = require('./config/db');
 var cors = require('cors');
 
-// routes
-const books = require('./routes/api/books');
+
+require("dotenv").config();
 
 const app = express();
+require("./models/quote");
+
+    mongoose
+     .connect(
+             {
+               useNewUrlParser: true,
+               useUnifiedTopology: true,
+             }
+     )
+     .then(() => console.log("MongoDB has been connected"))
+     .catch((err) => console.log(err));
+
+//middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+//import routes
+require("./routes/quoteRoute.js")(app);
+
+// routes
+const books = require('./routes/api/books');
 
 // Connect Database
 connectDB();
