@@ -21,11 +21,11 @@ const app = express();
 //      .catch((err) => console.log(err));
 
 //middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 //import routes
-require("./routes/quoteRoute.js")(app);
+//require("./routes/quoteRoute.js")(app);
 
 // routes
 const books = require('./routes/api/books');
